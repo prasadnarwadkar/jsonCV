@@ -1,0 +1,412 @@
+{
+    "$id": "https://example.com/schemas/json-cv",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "contactInfo": {
+        "$ref": "#/$defs/reach"
+      },
+      "cvHeadline": {
+        "$ref": "#/$defs/text"
+      },
+      "cvOf": {
+        "$ref": "#/$defs/text"
+      },
+      "requiresAuthFor": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "summary": {
+        "$ref": "#/$defs/summary"
+      },
+      "experience": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/experience"
+        }
+      },
+      "education": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/education"
+        }
+      },
+      "qualification": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/qualification"
+        }
+      },
+      "skill": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/skill"
+        }
+      }
+    },
+    "required": [
+      "contactInfo",
+      "cvHeadline",
+      "cvOf",
+      "summary",
+      "experience",
+      "education",
+      "qualification",
+      "skill"
+    ],
+    "$defs": {
+      "reach": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/personName"
+            }
+          },
+          "address": {
+            "$ref": "#/$defs/address"
+          },
+          "communication": {
+            "$ref": "#/$defs/communication"
+          },
+          "social": {
+            "$ref": "#/$defs/social"
+          }
+        },
+        "required": [
+          "names",
+          "address",
+          "communication"
+        ]
+      },
+      "supervisor": {
+        "type": "object",
+        "properties": {
+          "jobTitle": {
+            "type": "string"
+          },
+          "startSupervisionDate": {
+            "type": "string"
+          },
+          "endSupervisionDate": {
+            "type": "string"
+          },
+          "supervisorName": {
+            "$ref": "#/$defs/personName"
+          },
+          "address": {
+            "$ref": "#/$defs/address"
+          },
+          "communication": {
+            "$ref": "#/$defs/communication"
+          }
+        }
+      },
+      "experience": {
+        "type": "object",
+        "properties": {
+          "jobTitle": {
+            "type": "string"
+          },
+          "jobType": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "supervisors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/supervisor"
+            }
+          },
+          "workAddress": {
+            "$ref": "#/$defs/address"
+          },
+          "workCommunication": {
+            "$ref": "#/$defs/communication"
+          }
+        },
+        "required": [
+          "jobTitle",
+          "jobType",
+          "startDate",
+          "endDate",
+          "workAddress",
+          "workCommunication"
+        ]
+      },
+      "social": {
+        "type": "object",
+        "properties": {
+          "networkName": {
+            "type": "string"
+          },
+          "profileId": {
+            "type": "string"
+          },
+          "profileUri": {
+            "type": "string"
+          },
+          "numOfFollowers": {
+            "type": "string"
+          },
+          "verifiedProfile": {
+            "type": "string"
+          },
+          "shareWithEmployers": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "networkName",
+          "profileId",
+          "profileUri",
+          "numOfFollowers",
+          "verifiedProfile",
+          "shareWithEmployers"
+        ]
+      },
+      "personName": {
+        "properties": {
+          "lastName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "aka": {
+            "type": "string"
+          },
+          "nameType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "lastName",
+          "firstName",
+          "middleName",
+          "aka",
+          "nameType"
+        ]
+      },
+      "communication": {
+        "type": "object",
+        "properties": {
+          "system": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "isdCountryCode": {
+            "type": "string"
+          },
+          "areaCode": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "system",
+          "number",
+          "isdCountryCode",
+          "areaCode",
+          "phoneNumber"
+        ]
+      },
+      "address": {
+        "type": "object",
+        "properties": {
+          "addressLine1": {
+            "type": "string"
+          },
+          "addressLine2": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "countyOrProvinceOrState": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "isoCountryCode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "addressLine1",
+          "addressLine2",
+          "postalCode",
+          "city",
+          "countyOrProvinceOrState",
+          "country",
+          "isoCountryCode"
+        ]
+      },
+      "text": {
+        "type": "string"
+      },
+      "summary": {
+        "type": "object",
+        "properties": {
+          "summaryType": {
+            "type": "string"
+          },
+          "summaryTextFreeForm": {
+            "type": "string"
+          },
+          "summaryUpdatedOn": {
+            "type": "string",
+            "format": "ISODate"
+          }
+        },
+        "required": [
+          "summaryType",
+          "summaryTextFreeForm",
+          "summaryUpdatedOn"
+        ]
+      },
+      "skill": {
+        "type": "object",
+        "properties": {
+          "skillName": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string"
+          },
+          "endorsed": {
+            "type": "boolean"
+          },
+          "endorsedBy": {
+            "$ref": "#/$defs/personName"
+          },
+          "endorsedOn": {
+            "type": "string",
+            "format": "ISODate"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        },
+        "required": [
+          "skillName",
+          "level",
+          "keywords",
+          "endorsed",
+          "endorsedBy",
+          "endorsedOn"
+        ]
+      },
+      "qualification": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "certificationName": {
+            "type": "string"
+          },
+          "obtainedOn": {
+            "type": "string",
+            "format": "ISODate"
+          },
+          "validUntil": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "certificationName",
+          "obtainedOn",
+          "validUntil",
+          "institution",
+          "notes"
+        ]
+      },
+      "education": {
+        "type": "object",
+        "properties": {
+          "degreeOrDiploma": {
+            "type": "string"
+          },
+          "attendedFrom": {
+            "type": "string"
+          },
+          "attendedUntil": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "$ref": "#/$defs/address"
+              }
+            }
+          },
+          "majors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/major"
+            }
+          }
+        },
+        "required": [
+          "degreeOrDiploma",
+          "attendedFrom",
+          "attendedUntil",
+          "institution",
+          "majors"
+        ]
+      },
+      "major": {
+        "type": "object",
+        "properties": {
+          "majorName": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string",
+            "description": "The area (e.g. Arts, science, philosophy) the major falls under"
+          }
+        },
+        "required": [
+          "majorName",
+          "area"
+        ]
+      },
+      "mainCourses": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/major"
+        }
+      }
+    }
+  }
