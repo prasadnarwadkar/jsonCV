@@ -1,0 +1,50 @@
+django.utils.autoreload INFO 2025-08-15 10:37:00,964 autoreload 26752 22124 Watching for file changes with StatReloader
+kbuploader.views INFO 2025-08-15 10:38:18,323 views 26752 14752 KB Uploader View
+django.request WARNING 2025-08-15 10:38:21,343 log 26752 14752 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+kbuploader.views INFO 2025-08-15 10:38:24,541 views 26752 14752 KB Uploader View
+django.request WARNING 2025-08-15 10:38:24,777 log 26752 14752 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+kbuploader.views INFO 2025-08-15 10:38:31,883 views 26752 14752 KB Uploader View
+django.request WARNING 2025-08-15 10:38:32,093 log 26752 14752 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+django.request WARNING 2025-08-15 10:38:38,459 log 26752 14752 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+django.request WARNING 2025-08-15 10:41:01,183 log 26752 3696 Not Found: /favicon.ico
+django.request WARNING 2025-08-15 10:42:09,986 log 26752 13340 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+django.request WARNING 2025-08-15 10:42:12,120 log 26752 13340 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+django.request WARNING 2025-08-15 10:42:18,596 log 26752 13340 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+django.utils.autoreload INFO 2025-08-15 10:44:01,044 autoreload 21872 26132 Watching for file changes with StatReloader
+kbuploader.views INFO 2025-08-15 10:46:29,211 views 21872 5176 KB Uploader View
+django.utils.autoreload INFO 2025-08-15 15:10:22,960 autoreload 18096 1828 Watching for file changes with StatReloader
+django.utils.autoreload INFO 2025-08-15 15:11:47,179 autoreload 18096 1828 C:\Work\Python\Django\TaxHelp\mysite\urls.py changed, reloading.
+django.utils.autoreload INFO 2025-08-15 15:11:51,814 autoreload 13836 24464 Watching for file changes with StatReloader
+django.request WARNING 2025-08-15 15:12:37,321 log 13836 25572 Not Found: /favicon.ico
+django.utils.autoreload INFO 2025-08-15 15:14:18,700 autoreload 11340 1968 Watching for file changes with StatReloader
+django.request WARNING 2025-08-15 15:16:21,810 log 11340 3104 Not Found: /kbuploader/site-admin
+django.request WARNING 2025-08-15 15:16:35,833 log 11340 3104 Not Found: /kbuploader/site_admin
+django.request ERROR 2025-08-15 15:17:15,779 log 11340 14880 Internal Server Error: /kbuploader/download/general.log/
+Traceback (most recent call last):
+  File "c:\Work\Python\Django\TaxHelp\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Work\Python\Django\TaxHelp\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Work\Python\Django\TaxHelp\kbuploader\views.py", line 39, in download_file
+    if os.path.exists(file_path):
+       ~~~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: _path_exists: path should be string, bytes, os.PathLike or integer, not FileSystemStorage
+django.request ERROR 2025-08-15 15:17:49,094 log 11340 14880 Internal Server Error: /kbuploader/download/general.log/
+Traceback (most recent call last):
+  File "c:\Work\Python\Django\TaxHelp\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "c:\Work\Python\Django\TaxHelp\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Work\Python\Django\TaxHelp\kbuploader\views.py", line 39, in download_file
+    if os.path.exists(file_path):
+       ~~~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: _path_exists: path should be string, bytes, os.PathLike or integer, not FileSystemStorage
+django.utils.autoreload INFO 2025-08-15 15:17:53,494 autoreload 11340 1968 C:\Work\Python\Django\TaxHelp\kbuploader\views.py changed, reloading.
+django.utils.autoreload INFO 2025-08-15 15:17:58,342 autoreload 24436 7216 Watching for file changes with StatReloader
+django.utils.autoreload INFO 2025-08-15 15:18:17,663 autoreload 24436 7216 C:\Work\Python\Django\TaxHelp\kbuploader\views.py changed, reloading.
+django.utils.autoreload INFO 2025-08-15 15:18:22,607 autoreload 23004 22820 Watching for file changes with StatReloader
+django.request WARNING 2025-08-15 15:20:32,957 log 23004 744 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+django.utils.autoreload INFO 2025-08-15 15:25:05,264 autoreload 23004 22820 C:\Work\Python\Django\TaxHelp\kbuploader\views.py changed, reloading.
+django.utils.autoreload INFO 2025-08-15 15:25:10,112 autoreload 10220 17632 Watching for file changes with StatReloader
+django.utils.autoreload INFO 2025-08-15 15:25:32,260 autoreload 10220 17632 C:\Work\Python\Django\TaxHelp\kbuploader\views.py changed, reloading.
+django.utils.autoreload INFO 2025-08-15 15:25:37,120 autoreload 24092 9188 Watching for file changes with StatReloader
