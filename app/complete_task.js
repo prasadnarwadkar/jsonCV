@@ -1,5 +1,5 @@
 let rating;
-let taskStatusElement = document.getElementById('taskStatus');
+
 let previousStatus;
 let taskid = window.taskData.taskid
 let userId = window.taskData.userId
@@ -68,80 +68,7 @@ function handleAssignedUserIDChange(selectElement) {
     $("#assigned_userid").val(selectElement.value);
 }
 
-function handleTaskStatusChange(selectElement, event) {
-    console.log("Status: " + selectElement.options[selectElement.selectedIndex]?.text);
 
-    paymentReceived = window.taskData.paymentReceived
-
-    if (selectElement.options[selectElement.selectedIndex]?.text == "In Progress") {
-
-
-
-        if (paymentReceived != "True") {
-            if (userId != parseInt(window.taskData.assigned_userid)
-                || userId == parseInt(window.taskData.adminUserId)) {
-
-                var result = confirm("Are you sure you would like to mark this task as in progress? Starting a task requires advance payment. Rest assured, if you are not satisfied with the quality of the work done by the assigned person, you can always request them for either rework or a refund. After their confirmation, system might issue you a refund.")
-
-                if (result) {
-                    email = $("#email").val()
-                    phone = $("#phone").val()
-                    amount = $("#amount").val()
-                    const encodedEmail = encodeURIComponent(email);
-                    const encodedPhone = encodeURIComponent(phone);
-                    taskid = $("#taskid").val();
-                    const encodedTaskId = encodeURIComponent(taskid);
-                    const encodedAmount = encodeURIComponent(amount);
-                    const baseUrl = window.taskData.paymentBaseUrl;
-                    console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`);
-                    window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`;
-                    return
-                }
-                else {
-                    event.preventDefault();
-                    taskStatusElement.value = previousStatus;
-                }
-            }
-        }
-
-    }
-
-    if (selectElement.options[selectElement.selectedIndex]?.text != "Complete") {
-        document.getElementById("ratingCard").style.visibility = "hidden"
-    }
-    else {
-        document.getElementById("ratingCard").style.visibility = "visible"
-    }
-
-    if (selectElement.options[selectElement.selectedIndex]?.text == "Complete") {
-        if (paymentReceived != "True") {
-            alert("Payment is not received for this task yet. This task may not be marked as complete.")
-            return
-        }
-
-        var result = confirm("Are you sure you would like to mark this task as complete? Once you do this, it will be a read-only task and you won't be able to modify it.")
-
-        if (!result) {
-            event.preventDefault();
-            taskStatusElement.value = previousStatus;
-            document.getElementById("ratingCard").style.visibility = "hidden"
-        } else {
-
-            let originator_userid = parseInt($("#originator_userid").val())
-
-
-            if (userId != originator_userid) {
-                alert('Only the originator can mark the task as complete')
-                event.preventDefault();
-                taskStatusElement.value = previousStatus;
-                document.getElementById("ratingCard").style.visibility = "hidden"
-                return;
-            }
-
-            previousStatus = taskStatusElement.value;
-        }
-    }
-}
 
 function getPriceFromTaskTypeInt(id) {
     let price = 0

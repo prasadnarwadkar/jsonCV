@@ -1,5 +1,5 @@
 let rating;
-let taskStatusElement = document.getElementById('taskStatus');
+let taskStatusElement = null;
 let previousStatus;
 let spinner;
 
@@ -353,6 +353,10 @@ $(document).ready(function () {
 
     setUpAssignedUserIDSelect()
     setUpTaskTypeSelect()
+
+    if (taskStatusElement == null){
+        taskStatusElement = document.getElementById('taskStatus');
+    }
 
     if (taskStatusElement != null) {
         if (taskStatusElement.selectedIndex >= 0) {

@@ -1,5 +1,5 @@
 let rating;
-let taskStatusElement = document.getElementById('taskStatus');
+let taskStatusElement = null;
 let previousStatus = window.taskData.taskStatus;
 let spinner;
 
@@ -465,6 +465,9 @@ $(document).ready(function () {
     setUpTaskTypeSelect()
 
 
+    if (taskStatusElement == null){
+        taskStatusElement = document.getElementById('taskStatus');
+    }
 
     if (taskStatusElement != null
         && taskStatusElement.selectedIndex >= 0) {
