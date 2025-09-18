@@ -198,7 +198,7 @@ $(document).ready(function () {
 
 
             if (taskStatus == "In Progress") {
-                var result = confirm("This task is marked as in progress. Starting a task requires advance payment. Rest assured, if you are not satisfied with the quality of the work done by the assigned person, you can always request them for either rework or a refund. After their confirmation, system might issue you a refund. Are you sure you would like to proceed with the payment?")
+                var result = confirm("This task is marked as in progress. Please note that initiating a task requires advance payment. If you're not satisfied with the quality of work delivered by the assigned professional, you may request a rework or a refund. Once they confirm your request, the system may proceed with issuing a refund. Are you sure you would like to proceed with the payment?")
 
                 if (result) {
                     email = $("#email").val()

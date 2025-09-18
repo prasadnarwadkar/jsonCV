@@ -94,7 +94,7 @@ function handleTaskStatusChange(selectElement, event) {
             if (window.taskData.userId != parseInt(window.taskData.assigned_userid)
                 || window.taskData.userId == parseInt(window.taskData.adminUserId)) {
 
-                var result = confirm("Are you sure you would like to mark this task as in progress? Starting a task requires advance payment. Rest assured, if you are not satisfied with the quality of the work done by the assigned person, you can always request them for either rework or a refund. After their confirmation, system might issue you a refund.")
+                var result = confirm("Are you sure you want to mark this task as In Progress? Please note that initiating a task requires advance payment. If you're not satisfied with the quality of work delivered by the assigned professional, you may request a rework or a refund. Once they confirm your request, the system may proceed with issuing a refund.")
 
                 if (result) {
                     email = $("#email").val()
@@ -192,7 +192,7 @@ function taskPayButtonClick() {
         if (window.taskData.userId != parseInt(window.taskData.assigned_userid)
                 || window.taskData.userId == parseInt(window.taskData.adminUserId)) {
 
-            var result = confirm("Are you sure you would like to pay the fees for this task? Rest assured, if you are not satisfied with the quality of the work done by the assigned person, you can always request them for either rework or a refund. After their confirmation, system might issue you a refund.")
+            var result = confirm("Are you sure you would like to pay the fees for this task? Please note that initiating a task requires advance payment. If you're not satisfied with the quality of work delivered by the assigned professional, you may request a rework or a refund. Once they confirm your request, the system may proceed with issuing a refund.")
 
             if (result) {
                 email = $("#email").val()
