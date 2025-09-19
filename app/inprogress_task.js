@@ -285,23 +285,15 @@ $(document).ready(function () {
     spinner.style.display = 'none';
 
     $("#taskStatus").val(window.taskData.taskStatus);
-    $("#startDateLabel").text("Start Date: " + formatDate(window.taskData.startDate))
+    $("#startDateLabel").text("Start Date: " + window.taskData.startDate)
 
-    if ($("#endDate").val() != "None") {
-        $("#endDate").val(formatDate($("#endDate").val()))
-        $("#endDate").datepicker({ minDate: new Date(formatDate(window.taskData.startDate)) })
+    
 
-    }
-    else {
-        $("#endDate").val("")
-    }
 
-    console.log("start date", $("#startDate").val())
-    console.log("end date", $("#endDate").val())
 
     $("#amount").val($("#taskFees").val())
 
-    $("#endDate").val(formatDate($("#endDate").val()))
+    
 
     const scheduleOfCharges = window.taskData.scheduleOfCharges;
 
@@ -470,13 +462,7 @@ $(document).ready(function () {
         }
     }
 
-    // Initialize End Datepicker
-    $("#endDate").datepicker({
-        dateFormat: "yy-mm-dd",
-        onSelect: function (selectedDate) {
-
-        }
-    });
+    
 
     setUpAssignedUserIDSelect()
     setUpTaskTypeSelect()
@@ -513,20 +499,6 @@ $(document).ready(function () {
 
 });
 
-function formatDate(input) {
-    // Remove the period if present (e.g., "Aug. 27, 2025" → "Aug 27, 2025")
-    const cleaned = input.replace('.', '');
-
-    // Parse using Date constructor
-    const date = new Date(cleaned);
-
-    // Format to YYYY-MM-DD
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const dd = String(date.getDate()).padStart(2, '0');
-
-    return `${yyyy}-${mm}-${dd}`;
-}
 
 
 
@@ -555,7 +527,7 @@ function onSubmit() {
         return
     }
 
-    console.log("end date chosen: ", $("#endDate").val())
+
 
 
     if ($("#endDate").val() == undefined ||
@@ -567,7 +539,7 @@ function onSubmit() {
         return
     }
 
-    $("#endDate").val(formatDate($("#endDate").val()))
+    
 
     if (new Date($("#endDate").val()) < new Date(window.taskData.startDate)) {
         alert("Please select End date that is the same as or after the start date.")
