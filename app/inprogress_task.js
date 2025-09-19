@@ -193,49 +193,7 @@ function ratingNumChanged(element) {
     gfg(element.value)
 }
 
-function expTaskToPDF() {
 
-    let shortDesc = $("#taskDesc").val().substring(0, 50)
-    let taskDesc = `${shortDesc}..`;
-    let taskStatus = $("#taskStatus").val();
-
-
-    var doc = new jsPDF();
-
-    var img = new Image()
-    img.src = 'https://prasadnarwadkar.github.io/jsonCV/img/favicon.png'
-    doc.addImage(img, 'png', 20, 120, 36, 36)
-
-    doc.setFontSize(22);
-    doc.text(20, 20, 'Task Details');
-
-    doc.setFontSize(16);
-    doc.text(20, 30, `Task ID: ${window.taskData.taskid}`);
-    doc.setFontSize(16);
-    doc.text(20, 40, `Task Description: ${taskDesc}`);
-    doc.setFontSize(16);
-    doc.text(20, 50, `Task Status: ${$("#taskStatus").val()}`);
-    
-    doc.text(20, 70, `Task Fees Agreed Mutually: INR ${$("#taskFees").val()}`)
-    doc.text(20, 80, `Task Type: ${$("#taskTypeLabel").val()}`)
-    let assignedUserID = parseInt(window.taskData.assigned_userid)
-    if (taskStatus == "Complete"
-        || taskStatus == "In Progress"
-    ) {
-        fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data['message'])
-                doc.text(20, 90, `Assigned to: ${data['message']}`)
-
-                doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN")}`)
-                doc.text(20, 110, `End Date: ${new Date($("#endDate").val()).toLocaleDateString("en-IN")}`)
-
-                doc.save(`Task${window.taskData.taskid}.pdf`);
-            });
-
-    }
-}
 
 function taskPayButtonClick() {
     paymentReceived = window.taskData.paymentReceived
