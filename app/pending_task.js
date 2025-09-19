@@ -263,7 +263,7 @@ $(document).ready(function () {
     console.log("Task fees: ", $("#taskFees").val())
 
     if ($("#startDate").val() != "None") {
-        //$("#startDate").val(formatDate($("#startDate").val()))
+        $("#startDate").val(formatDate($("#startDate").val()))
         $("#startDate").datepicker({ dateFormat: 'dd/mm/yy', setDate: $("#startDate").val() })
         $("#endDate").datepicker({
             dateFormat: 'dd/mm/yy', setDate: $("#endDate").val(),
@@ -276,7 +276,7 @@ $(document).ready(function () {
     }
 
     if ($("#endDate").val() != "None") {
-        //$("#endDate").val(formatDate($("#endDate").val()))
+        $("#endDate").val(formatDate($("#endDate").val()))
         
         $("#startDate").datepicker({ dateFormat: 'dd/mm/yy', maxDate: new Date($("#endDate").val()) })
     }
@@ -456,8 +456,8 @@ function onSubmit() {
         return
     }
 
-    //$("#startDate").val(formatDate($("#startDate").val()))
-    //$("#endDate").val(formatDate($("#endDate").val()))
+    $("#startDate").val(formatDate($("#startDate").val()))
+    $("#endDate").val(formatDate($("#endDate").val()))
 
     if (new Date($("#endDate").val()) < new Date($("#startDate").val())) {
         alert("Please select End date that is the same as or after the start date.")
