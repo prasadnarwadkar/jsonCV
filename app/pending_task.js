@@ -262,26 +262,7 @@ $(document).ready(function () {
 
     console.log("Task fees: ", $("#taskFees").val())
 
-    if ($("#startDate").val() != "None") {
-        $("#startDate").val(formatDate($("#startDate").val()))
-               
-
-    }
-    else {
-        $("#startDate").val("")
-    }
-
-    if ($("#endDate").val() != "None") {
-        $("#endDate").val(formatDate($("#endDate").val()))
-        
-        $("#startDate").datepicker({maxDate: new Date($("#endDate").val()) })
-    }
-    else {
-        $("#endDate").val("")
-    }
-
-    console.log("start date", $("#startDate").val())
-    console.log("end date", $("#endDate").val())
+    
 
 
 
@@ -348,15 +329,7 @@ $(document).ready(function () {
 
 
 
-    // Initialize Start Datepicker
-    $("#startDate").datepicker({
-        dateFormat: "dd/mm/yy"
-    });
-
-    // Initialize End Datepicker
-    $("#endDate").datepicker({
-        dateFormat: "dd/mm/yy"
-    });
+    
 
     setUpAssignedUserIDSelect()
     setUpTaskTypeSelect()
@@ -400,11 +373,7 @@ function formatDate(input) {
     return `${dd}/${mm}/${yyyy}`;
 }
 
-$('#startDate').on('change', function () {
-    console.log('Selected start date:', $(this).val());
-    console.log('End date min date set', $(this).val());
-    $("#endDate").datepicker({ minDate: $(this).val() })
-});
+
 
 function onSubmit() {
 
