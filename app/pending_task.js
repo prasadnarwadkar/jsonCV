@@ -264,11 +264,7 @@ $(document).ready(function () {
 
     if ($("#startDate").val() != "None") {
         $("#startDate").val(formatDate($("#startDate").val()))
-        $("#startDate").datepicker({ dateFormat: 'dd/mm/yy', setDate: $("#startDate").val() })
-        $("#endDate").datepicker({
-            dateFormat: 'dd/mm/yy', setDate: $("#endDate").val(),
-            
-        })
+               
 
     }
     else {
@@ -278,7 +274,7 @@ $(document).ready(function () {
     if ($("#endDate").val() != "None") {
         $("#endDate").val(formatDate($("#endDate").val()))
         
-        $("#startDate").datepicker({ dateFormat: 'dd/mm/yy', maxDate: new Date($("#endDate").val()) })
+        $("#startDate").datepicker({maxDate: new Date($("#endDate").val()) })
     }
     else {
         $("#endDate").val("")
@@ -359,11 +355,7 @@ $(document).ready(function () {
 
     // Initialize End Datepicker
     $("#endDate").datepicker({
-        dateFormat: "dd/mm/yy",
-        onSelect: function (selectedDate) {
-            // Set the maximum date for the Start Datepicker
-            $("#startDate").datepicker({ dateFormat: 'dd/mm/yy', maxDate: selectedDate });
-        }
+        dateFormat: "dd/mm/yy"
     });
 
     setUpAssignedUserIDSelect()
@@ -411,7 +403,7 @@ function formatDate(input) {
 $('#startDate').on('change', function () {
     console.log('Selected start date:', $(this).val());
     console.log('End date min date set', $(this).val());
-    $("#endDate").datepicker({ dateFormat: 'dd/mm/yy', minDate: $(this).val() })
+    $("#endDate").datepicker({ minDate: $(this).val() })
 });
 
 function onSubmit() {
