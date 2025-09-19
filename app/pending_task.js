@@ -417,9 +417,7 @@ function onSubmit() {
         return
     }
 
-    $("#startDate").val(formatDate($("#startDate").val()))
-    $("#endDate").val(formatDate($("#endDate").val()))
-
+    
     if (new Date($("#endDate").val()) < new Date($("#startDate").val())) {
         alert("Please select End date that is the same as or after the start date.")
 
