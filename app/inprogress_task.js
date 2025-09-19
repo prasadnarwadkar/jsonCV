@@ -285,7 +285,7 @@ $(document).ready(function () {
     spinner.style.display = 'none';
 
     $("#taskStatus").val(window.taskData.taskStatus);
-    $("#startDateLabel").text("Start Date: " + window.taskData.startDate)
+    
 
     
 
