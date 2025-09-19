@@ -130,8 +130,8 @@ function expTaskToPDF() {
                 console.log(data['message'])
                 doc.text(20, 90, `Assigned to: ${data['message']}`)
 
-                doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString()}`)
-                doc.text(20, 110, `End Date: ${new Date(Date.parse(window.taskData.endDate)).toLocaleDateString()}`)
+                doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN")}`)
+                doc.text(20, 110, `End Date: ${new Date(Date.parse(window.taskData.endDate)).toLocaleDateString("en-IN")}`)
 
                 doc.save(`Task${taskID}.pdf`);
             });
@@ -251,7 +251,7 @@ $(document).ready(function () {
                 if ($("#taskid").val().length > 0) {
                     const history = JSON.parse(localStorage.getItem('inputHistoryForTask' + $("#taskid").val())) || [];
                     let userFullName = window.taskData.userFullName
-                    const timestamp = new Date().toLocaleString();
+                    const timestamp = new Date().toLocaleString("en-IN");
                     history.push({ value: `${inputValue} (${userFullName})`, date: timestamp });
 
                     localStorage.setItem('inputHistoryForTask' + $("#taskid").val(), JSON.stringify(history));
@@ -329,6 +329,6 @@ $(document).ready(function () {
     }
 
 
-    $("#startDate").val(new Date(Date.parse(window.taskData.startDate)).toLocaleDateString());
-    $("#endDate").val(new Date(Date.parse(window.taskData.endDate)).toLocaleDateString());
+    $("#startDate").val(new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN"));
+    $("#endDate").val(new Date(Date.parse(window.taskData.endDate)).toLocaleDateString("en-IN"));
 });
