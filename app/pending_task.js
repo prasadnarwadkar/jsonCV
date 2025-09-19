@@ -359,19 +359,7 @@ $(document).ready(function () {
     console.log("taskstatus", $("#taskStatus").val())
 });
 
-function formatDate(input) {
-    // Remove the period if present (e.g., "Aug. 27, 2025" → "Aug 27, 2025")
-    const cleaned = input.replace('.', '');
 
-    // Parse using Date constructor
-    const date = new Date(cleaned);
-
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const dd = String(date.getDate()).padStart(2, '0');
-
-    return `${dd}/${mm}/${yyyy}`;
-}
 
 
 
@@ -396,9 +384,6 @@ function onSubmit() {
 
         return
     }
-
-    console.log("start date chosen: ", $("#startDate").val())
-    console.log("end date chosen: ", $("#endDate").val())
 
     if ($('[name="startDate"]').val() == undefined
         || $("#startDate").val() == 'Invalid Date'

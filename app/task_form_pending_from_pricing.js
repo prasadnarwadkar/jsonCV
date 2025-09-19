@@ -264,33 +264,6 @@ $(document).ready(function () {
 
     console.log("Task fees: ", $("#taskFees").val())
 
-    if ($("#startDate").val() != "None") {
-        $("#startDate").val(formatDate($("#startDate").val()))
-        $("#startDate").datepicker("setDate", $("#startDate").val())
-
-    }
-    else {
-        $("#startDate").val("")
-    }
-
-    if ($("#endDate").val() != "None") {
-        $("#endDate").val(formatDate($("#endDate").val()))
-        $("#endDate").datepicker({ minDate: new Date($("#startDate").val()) })
-        $("#startDate").datepicker({ maxDate: new Date($("#endDate").val()) })
-    }
-    else {
-        $("#endDate").val("")
-    }
-
-    console.log("start date", $("#startDate").val())
-    console.log("end date", $("#endDate").val())
-
-
-
-
-
-
-
     fetch(`/kbuploader/getUserRating/${assignedUserID}/`)
         .then(response => response.json())
         .then(data => {
@@ -348,27 +321,6 @@ $(document).ready(function () {
         }
     }
 
-
-
-    // Initialize Start Datepicker
-    $("#startDate").datepicker({
-        dateFormat: "yy-mm-dd",
-
-        onSelect: function (selectedDate) {
-            // Set the minimum date for the End Datepicker
-            $("#endDate").datepicker("option", "minDate", selectedDate);
-        }
-    });
-
-    // Initialize End Datepicker
-    $("#endDate").datepicker({
-        dateFormat: "yy-mm-dd",
-        onSelect: function (selectedDate) {
-            // Set the maximum date for the Start Datepicker
-            $("#startDate").datepicker("option", "maxDate", selectedDate);
-        }
-    });
-
     setUpAssignedUserIDSelect()
     setUpTaskTypeSelect()
 
@@ -399,20 +351,7 @@ $(document).ready(function () {
     console.log("taskstatus", $("#taskStatus").val())
 });
 
-function formatDate(input) {
-    // Remove the period if present (e.g., "Aug. 27, 2025" → "Aug 27, 2025")
-    const cleaned = input.replace('.', '');
 
-    // Parse using Date constructor
-    const date = new Date(cleaned);
-
-    // Format to YYYY-MM-DD
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const dd = String(date.getDate()).padStart(2, '0');
-
-    return `${yyyy}-${mm}-${dd}`;
-}
 
 
 function onSubmit() {
@@ -437,9 +376,6 @@ function onSubmit() {
         return
     }
 
-    console.log("start date chosen: ", $("#startDate").val())
-    console.log("end date chosen: ", $("#endDate").val())
-
     if ($('[name="startDate"]').val() == undefined
         || $("#startDate").val() == 'Invalid Date'
         || $("#startDate").val() == 'None'
@@ -457,8 +393,7 @@ function onSubmit() {
         return
     }
 
-    $("#startDate").val(formatDate($("#startDate").val()))
-    $("#endDate").val(formatDate($("#endDate").val()))
+
 
     if (new Date($("#endDate").val()) < new Date($("#startDate").val())) {
         alert("Please select End date that is the same as or after the start date.")
