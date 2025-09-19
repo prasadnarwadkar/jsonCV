@@ -249,11 +249,13 @@ $(document).ready(function () {
     $("#taskStatus").val(window.taskData.taskStatus);
     let assignedUserID = parseInt(window.taskData.assigned_userid)
 
-    fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
-        .then(response => response.json())
-        .then(data => {
-            $("#assigned_user_full_name").text(data['message'])
-        })
+    if (assignedUserID > 0) {
+        fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
+            .then(response => response.json())
+            .then(data => {
+                $("#assigned_user_full_name").text(data['message'])
+            })
+    }
 
     userId = parseInt(window.taskData.userId)
 

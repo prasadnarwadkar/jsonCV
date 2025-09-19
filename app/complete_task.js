@@ -106,7 +106,7 @@ function expTaskToPDF() {
 
     var img = new Image()
     img.src = 'https://prasadnarwadkar.github.io/jsonCV/img/favicon.ico'
-    doc.addImage(img, 'png', 20,120, 36,36)
+    doc.addImage(img, 'png', 20, 120, 36, 36)
 
     doc.setFontSize(22);
     doc.text(20, 20, 'Task Details');
@@ -132,7 +132,7 @@ function expTaskToPDF() {
 
                 doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString()}`)
                 doc.text(20, 110, `End Date: ${new Date(Date.parse(window.taskData.endDate)).toLocaleDateString()}`)
-                
+
                 doc.save(`Task${taskID}.pdf`);
             });
 
@@ -156,12 +156,15 @@ function formatDate(input) {
 
 $(document).ready(function () {
     let assignedUserID = parseInt(window.taskData.assigned_userid)
-    
-    fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
-          .then(response => response.json())
-          .then(data => {
-            $("#assigned_user_full_name").text(data['message'])
-          })
+
+    if (assignedUserID > 0) {
+
+        fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
+            .then(response => response.json())
+            .then(data => {
+                $("#assigned_user_full_name").text(data['message'])
+            })
+    }
 
     $("#startDate").val(formatDate(window.taskData.startDate))
     $("#endDate").val(formatDate(window.taskData.endDate))
