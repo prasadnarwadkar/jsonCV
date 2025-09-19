@@ -264,7 +264,7 @@ $(document).ready(function () {
 
     if ($("#startDate").val() != "None") {
         $("#startDate").val(formatDate($("#startDate").val()))
-        $("#startDate").datepicker("setDate", $("#startDate").val())
+        $("#startDate").datepicker({dateFormat: 'dd/mm/yy',setDate:  $("#startDate").val()})
 
     }
     else {
@@ -273,8 +273,8 @@ $(document).ready(function () {
 
     if ($("#endDate").val() != "None") {
         $("#endDate").val(formatDate($("#endDate").val()))
-        $("#endDate").datepicker({ minDate: new Date($("#startDate").val()) })
-        $("#startDate").datepicker({ maxDate: new Date($("#endDate").val()) })
+        $("#endDate").datepicker({dateFormat: 'dd/mm/yy', minDate: new Date($("#startDate").val()) })
+        $("#startDate").datepicker({ dateFormat: 'dd/mm/yy',maxDate: new Date($("#endDate").val()) })
     }
     else {
         $("#endDate").val("")
@@ -354,7 +354,7 @@ $(document).ready(function () {
 
         onSelect: function (selectedDate) {
             // Set the minimum date for the End Datepicker
-            $("#endDate").datepicker("option", "minDate", selectedDate);
+            $("#endDate").datepicker({dateFormat: 'dd/mm/yy',minDate: selectedDate});
         }
     });
 
@@ -363,7 +363,7 @@ $(document).ready(function () {
         dateFormat: "dd/mm/yy",
         onSelect: function (selectedDate) {
             // Set the maximum date for the Start Datepicker
-            $("#startDate").datepicker("option", "maxDate", selectedDate);
+            $("#startDate").datepicker({dateFormat: 'dd/mm/yy',maxDate: selectedDate});
         }
     });
 
