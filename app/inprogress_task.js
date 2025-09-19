@@ -305,6 +305,13 @@ $(document).ready(function () {
     const parsedScheduleOfCharges = JSON.parse(jsonReadyScheduleOfCharges);
 
     let assignedUserID = parseInt(window.taskData.assigned_userid)
+
+    fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
+          .then(response => response.json())
+          .then(data => {
+            $("#assigned_user_full_name").text(data['message'])
+          })
+    
     paymentReceived = window.taskData.paymentReceived
 
 
