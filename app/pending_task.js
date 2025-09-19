@@ -350,7 +350,7 @@ $(document).ready(function () {
 
     // Initialize Start Datepicker
     $("#startDate").datepicker({
-        dateFormat: "yy-mm-dd",
+        dateFormat: "dd/mm/yy",
 
         onSelect: function (selectedDate) {
             // Set the minimum date for the End Datepicker
@@ -360,7 +360,7 @@ $(document).ready(function () {
 
     // Initialize End Datepicker
     $("#endDate").datepicker({
-        dateFormat: "yy-mm-dd",
+        dateFormat: "dd/mm/yy",
         onSelect: function (selectedDate) {
             // Set the maximum date for the Start Datepicker
             $("#startDate").datepicker("option", "maxDate", selectedDate);
@@ -402,12 +402,11 @@ function formatDate(input) {
     // Parse using Date constructor
     const date = new Date(cleaned);
 
-    // Format to YYYY-MM-DD
     const yyyy = date.getFullYear();
     const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
     const dd = String(date.getDate()).padStart(2, '0');
 
-    return `${yyyy}-${mm}-${dd}`;
+    return `${dd}/${mm}/${yyyy}`;
 }
 
 
