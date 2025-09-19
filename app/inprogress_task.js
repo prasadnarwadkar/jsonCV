@@ -67,6 +67,13 @@ function handleAssignedUserIDChange(selectElement) {
     $("#assigned_userid").val(selectElement.value);
 
     if (selectElement.value != '') {
+
+        fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
+        .then(response => response.json())
+        .then(data => {
+            $("#assigned_user_full_name").text(data['message'])
+        })
+        
         fetch(`/kbuploader/getUserRating/${selectElement.value}/`)
             .then(response => response.json())
             .then(data => {
@@ -197,7 +204,7 @@ function expTaskToPDF() {
 
     var img = new Image()
     img.src = 'https://prasadnarwadkar.github.io/jsonCV/img/favicon.png'
-    doc.addImage(img, 'png', 20,120, 36,36)
+    doc.addImage(img, 'png', 20, 120, 36, 36)
 
     doc.setFontSize(22);
     doc.text(20, 20, 'Task Details');
@@ -223,7 +230,7 @@ function expTaskToPDF() {
 
                 doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString()}`)
                 doc.text(20, 110, `End Date: ${new Date(Date.parse($("#endDate").val())).toLocaleDateString()}`)
-                
+
                 doc.save(`Task${window.taskData.taskid}.pdf`);
             });
 
@@ -307,11 +314,11 @@ $(document).ready(function () {
     let assignedUserID = parseInt(window.taskData.assigned_userid)
 
     fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
-          .then(response => response.json())
-          .then(data => {
+        .then(response => response.json())
+        .then(data => {
             $("#assigned_user_full_name").text(data['message'])
-          })
-    
+        })
+
     paymentReceived = window.taskData.paymentReceived
 
 
@@ -472,7 +479,7 @@ $(document).ready(function () {
     setUpTaskTypeSelect()
 
 
-    if (taskStatusElement == null){
+    if (taskStatusElement == null) {
         taskStatusElement = document.getElementById('taskStatus');
     }
 
@@ -537,7 +544,7 @@ function onSubmit() {
         return
     }
 
-    
+
 
     if ($("#taskStatus").val() == null) {
         alert("Please select Task Status.")

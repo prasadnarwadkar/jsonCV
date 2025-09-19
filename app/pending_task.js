@@ -66,7 +66,15 @@ function handleAssignedUserIDChange(selectElement) {
     console.log("Assigned User ID: " + selectElement.value);
     $("#assigned_userid").val(selectElement.value);
 
+    
+
     if (selectElement.value != '') {
+        fetch(`/kbuploader/getUserFullName/${selectElement.value}/`)
+        .then(response => response.json())
+        .then(data => {
+            $("#assigned_user_full_name").text(data['message'])
+        })
+        
         fetch(`/kbuploader/getUserRating/${selectElement.value}/`)
             .then(response => response.json())
             .then(data => {
@@ -186,7 +194,7 @@ function taskPayButtonClick() {
 
     if (paymentReceived != "True") {
         if (window.taskData.userId != parseInt(window.taskData.assigned_userid)
-                || window.taskData.userId == parseInt(window.taskData.adminUserId)) {
+            || window.taskData.userId == parseInt(window.taskData.adminUserId)) {
 
             var result = confirm("Are you sure you would like to pay the fees for this task? Please note that initiating a task requires advance payment. If you're not satisfied with the quality of work delivered by the assigned professional, you may request a rework or a refund. Once they confirm your request, the system may proceed with issuing a refund.")
 
@@ -240,10 +248,10 @@ $(document).ready(function () {
     let assignedUserID = parseInt(window.taskData.assigned_userid)
 
     fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
-          .then(response => response.json())
-          .then(data => {
+        .then(response => response.json())
+        .then(data => {
             $("#assigned_user_full_name").text(data['message'])
-          })
+        })
 
     userId = parseInt(window.taskData.userId)
 
@@ -360,7 +368,7 @@ $(document).ready(function () {
     setUpAssignedUserIDSelect()
     setUpTaskTypeSelect()
 
-    if (taskStatusElement == null){
+    if (taskStatusElement == null) {
         taskStatusElement = document.getElementById('taskStatus');
     }
 
@@ -469,7 +477,7 @@ function onSubmit() {
     }
 
     if (parseFloat($("#taskFees").val()) < 1) {
-        alert('Please select a task type. If task type selected is "Custom", please enter valid and agreed task fees.' )
+        alert('Please select a task type. If task type selected is "Custom", please enter valid and agreed task fees.')
         return
     }
 

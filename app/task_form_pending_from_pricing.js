@@ -67,6 +67,12 @@ function handleAssignedUserIDChange(selectElement) {
     $("#assigned_userid").val(selectElement.value);
 
     if (selectElement.value != '') {
+        fetch(`/kbuploader/getUserFullName/${selectElement.value}/`)
+            .then(response => response.json())
+            .then(data => {
+                $("#assigned_user_full_name").text(data['message'])
+            })
+
         fetch(`/kbuploader/getUserRating/${selectElement.value}/`)
             .then(response => response.json())
             .then(data => {
