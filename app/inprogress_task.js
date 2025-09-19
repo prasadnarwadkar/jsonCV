@@ -215,7 +215,7 @@ function expTaskToPDF() {
     doc.text(20, 40, `Task Description: ${taskDesc}`);
     doc.setFontSize(16);
     doc.text(20, 50, `Task Status: ${$("#taskStatus").val()}`);
-    doc.text(20, 60, `Task Rating By the Originator: ${$("#taskRatingDone").val()}`)
+    
     doc.text(20, 70, `Task Fees Agreed Mutually: INR ${$("#taskFees").val()}`)
     doc.text(20, 80, `Task Type: ${$("#taskTypeLabel").val()}`)
     let assignedUserID = parseInt(window.taskData.assigned_userid)
@@ -229,7 +229,7 @@ function expTaskToPDF() {
                 doc.text(20, 90, `Assigned to: ${data['message']}`)
 
                 doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN")}`)
-                doc.text(20, 110, `End Date: ${new Date(Date.parse($("#endDate").val())).toLocaleDateString("en-IN")}`)
+                doc.text(20, 110, `End Date: ${new Date($("#endDate").val()).toLocaleDateString("en-IN")}`)
 
                 doc.save(`Task${window.taskData.taskid}.pdf`);
             });
