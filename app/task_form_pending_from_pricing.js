@@ -257,6 +257,16 @@ $(document).ready(function () {
             })
     }
 
+    let originator = parseInt($("#originator_userid").val())
+
+    if (originator > 0) {
+        fetch(`/kbuploader/getUserFullName/${originator}/`)
+            .then(response => response.json())
+            .then(data => {
+                $("#originator_user_full_name").text(data['message'])
+            })
+    }
+
     userId = parseInt(window.taskData.userId)
 
 
