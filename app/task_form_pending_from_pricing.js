@@ -291,15 +291,15 @@ $(document).ready(function () {
 
 
     function sanitizeJsonString(input) {
-        // Step 1: Remove stray triple quotes or double double-quotes
-        let cleaned = input.replace(/""+"/g, '"');
+        // Step 1: Remove triple quotes and normalize
+        let cleaned = input.replace(/\\*"{3,}/g, '\\"');
 
-        // Step 2: Escape any unescaped double quotes inside values
-        cleaned = cleaned.replace(/"([^"]*?)"([^,\]}])/g, (match, p1, p2) => {
-            return `"${p1.replace(/"/g, '\\"')}"${p2}`;
+        // Step 2: Fix any unescaped quotes inside values
+        cleaned = cleaned.replace(/"([^"]*?)\\"([^"]*?)"/g, (match, p1, p2) => {
+            return `"${p1}\\\"${p2}"`;
         });
 
-        // Step 3: Try parsing, fallback if it fails
+        // Step 3: Try parsing
         try {
             return JSON.parse(cleaned);
         } catch (e) {
@@ -311,9 +311,9 @@ $(document).ready(function () {
 
     function setUpAssignedUserIDSelect() {
         let rawString = window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g, "\"").replace(/'/g, '"')
-        console.log("Raw string from users list: ",rawString)
+        console.log("Raw string from users list: ", rawString)
         let sanitized = sanitizeJsonString(rawString)
-        console.log("Sanitized JSON from users list: ",JSON.stringify(sanitized))
+        console.log("Sanitized JSON from users list: ", JSON.stringify(sanitized))
         let parsed = sanitized;
 
         if ($("#taskStatus").val() == "Pending"
