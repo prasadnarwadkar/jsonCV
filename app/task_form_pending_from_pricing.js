@@ -290,7 +290,23 @@ $(document).ready(function () {
     const historyDiv = document.getElementById('history');
 
 
+    function sanitizeJsonString(input) {
+        // Step 1: Remove stray triple quotes or double double-quotes
+        let cleaned = input.replace(/""+"/g, '"');
 
+        // Step 2: Escape any unescaped double quotes inside values
+        cleaned = cleaned.replace(/"([^"]*?)"([^,\]}])/g, (match, p1, p2) => {
+            return `"${p1.replace(/"/g, '\\"')}"${p2}`;
+        });
+
+        // Step 3: Try parsing, fallback if it fails
+        try {
+            return JSON.parse(cleaned);
+        } catch (e) {
+            console.error("Still malformed after cleanup:", e.message);
+            return null;
+        }
+    }
 
 
     function setUpAssignedUserIDSelect() {
