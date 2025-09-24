@@ -294,7 +294,7 @@ $(document).ready(function () {
 
 
     function setUpAssignedUserIDSelect() {
-        let parsed = JSON.parse(window.taskData.social_users.replace(/&#x27;/g, "'").replace(/'/g, '"'));
+        let parsed = JSON.parse(window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g,"").replace(/'/g, '"'));
 
         if ($("#taskStatus").val() == "Pending"
             || $("#taskStatus").val() == "On Hold"
