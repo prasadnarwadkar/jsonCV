@@ -294,7 +294,11 @@ $(document).ready(function () {
 
 
     function setUpAssignedUserIDSelect() {
-        let parsed = JSON.parse(window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g,"\"").replace(/'/g, '"'));
+        let rawString = window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g, "\"").replace(/'/g, '"')
+        console.log("Raw string from users list: ",rawString)
+        let sanitized = sanitizeJsonString(rawString)
+        console.log("Sanitized JSON from users list: ",JSON.stringify(sanitized))
+        let parsed = sanitized;
 
         if ($("#taskStatus").val() == "Pending"
             || $("#taskStatus").val() == "On Hold"

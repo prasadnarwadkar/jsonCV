@@ -272,7 +272,7 @@ $(document).ready(function () {
 
     console.log("Task fees: ", $("#taskFees").val())
 
-    
+
 
 
 
@@ -296,11 +296,33 @@ $(document).ready(function () {
     const historyDiv = document.getElementById('history');
 
 
+    function sanitizeJsonString(input) {
+        // Step 1: Remove stray triple quotes or double double-quotes
+        let cleaned = input.replace(/""+"/g, '"');
 
+        // Step 2: Escape any unescaped double quotes inside values
+        cleaned = cleaned.replace(/"([^"]*?)"([^,\]}])/g, (match, p1, p2) => {
+            return `"${p1.replace(/"/g, '\\"')}"${p2}`;
+        });
+
+        // Step 3: Try parsing, fallback if it fails
+        try {
+            return JSON.parse(cleaned);
+        } catch (e) {
+            console.error("Still malformed after cleanup:", e.message);
+            return null;
+        }
+    }
 
 
     function setUpAssignedUserIDSelect() {
-        let parsed = JSON.parse(window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g,"\"").replace(/'/g, '"'));
+        let rawString = window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g, "\"").replace(/'/g, '"')
+        console.log("Raw string from users list: ",rawString)
+        let sanitized = sanitizeJsonString(rawString)
+        console.log("Sanitized JSON from users list: ",JSON.stringify(sanitized))
+        let parsed = sanitized;
+
+        
 
         if ($("#taskStatus").val() == "Pending"
             || $("#taskStatus").val() == "On Hold"
@@ -339,7 +361,7 @@ $(document).ready(function () {
 
 
 
-    
+
 
     setUpAssignedUserIDSelect()
     setUpTaskTypeSelect()
@@ -412,7 +434,7 @@ function onSubmit() {
         return
     }
 
-    
+
     if (new Date($("#endDate").val()) < new Date($("#startDate").val())) {
         appendAlert("Please select End date that is the same as or after the start date.", "danger")
 
