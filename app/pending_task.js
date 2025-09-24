@@ -131,7 +131,7 @@ function handleTaskStatusChange(selectElement, event) {
 
     if (selectElement.options[selectElement.selectedIndex]?.text == "Complete") {
         if (paymentReceived != "True") {
-            alert("Payment is not received for this task yet. This task may not be marked as complete.")
+            appendAlert("Payment is not received for this task yet. This task may not be marked as complete.", "danger")
             return
         }
 
@@ -147,7 +147,7 @@ function handleTaskStatusChange(selectElement, event) {
 
 
             if (userId != originator_userid) {
-                alert('Only the originator can mark the task as complete')
+                appendAlert('Only the originator can mark the task as complete', "warning")
                 event.preventDefault();
                 taskStatusElement.value = previousStatus;
 
@@ -378,19 +378,19 @@ function onSubmit() {
 
 
     if ($("#taskDesc").val().length == 0) {
-        alert("Please enter Task Description.")
+        appendAlert("Please enter Task Description.", "danger")
 
         return
     }
 
     if ($("#taskDesc").val().length > 200) {
-        alert("Task Description may not be more than 200 characters.")
+        appendAlert("Task Description may not be more than 200 characters.", "danger")
 
         return
     }
 
     if ($("#taskStatus").val() == null) {
-        alert("Please select Task Status.")
+        appendAlert("Please select Task Status.", "danger")
 
         return
     }
@@ -399,7 +399,7 @@ function onSubmit() {
         || $("#startDate").val() == 'Invalid Date'
         || $("#startDate").val() == 'None'
         || $("#startDate").val().length == 0) {
-        alert("Please select valid Start date.")
+        appendAlert("Please select valid Start date.", "danger")
         return
     }
 
@@ -407,14 +407,14 @@ function onSubmit() {
         $("#endDate").val() == 'Invalid Date'
         || $("#endDate").val() == 'None'
         || $("#endDate").val().length == 0) {
-        alert("Please select valid End date.")
+        appendAlert("Please select valid End date.", "danger")
 
         return
     }
 
     
     if (new Date($("#endDate").val()) < new Date($("#startDate").val())) {
-        alert("Please select End date that is the same as or after the start date.")
+        appendAlert("Please select End date that is the same as or after the start date.", "danger")
 
         return
     }
@@ -422,7 +422,7 @@ function onSubmit() {
     console.log("assigned user id:", parseInt($("#assigned_userid").val()))
     if (parseInt($("#assigned_userid").val()) == 0
         || parseInt($("#assigned_userid").val()) == NaN) {
-        alert('Please assign the task to a user.')
+        appendAlert('Please assign the task to a user.', "danger")
         return
     }
 
@@ -431,12 +431,12 @@ function onSubmit() {
 
     if ($("#taskType").val() == null
         || $("#taskType").val().length == 0) {
-        alert('Please select a task type.')
+        appendAlert('Please select a task type.', "danger")
         return
     }
 
     if (parseFloat($("#taskFees").val()) < 1) {
-        alert('Please select a task type. If task type selected is "Custom", please enter valid and agreed task fees.')
+        appendAlert('Please select a task type. If task type selected is "Custom", please enter valid and agreed task fees.', "danger")
         return
     }
 

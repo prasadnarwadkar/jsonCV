@@ -134,10 +134,10 @@ function handleTaskStatusChange(selectElement, event) {
     }
 
     if (selectElement.options[selectElement.selectedIndex]?.text == "Complete") {
-        alert("Rating this task is essential for providing feedback and evaluating its completion. By assigning a rating, you contribute to an ongoing process of improvement and accountability.")
+        appendAlert("Rating this task is essential for providing feedback and evaluating its completion. By assigning a rating, you contribute to an ongoing process of improvement and accountability.", "danger")
 
         if (paymentReceived != "True") {
-            alert("Payment is not received for this task yet. This task may not be marked as complete.")
+            appendAlert("Payment is not received for this task yet. This task may not be marked as complete.", "danger")
             return
         }
 
@@ -153,7 +153,7 @@ function handleTaskStatusChange(selectElement, event) {
 
 
             if (window.taskData.userId != originator_userid) {
-                alert('Only the originator can mark the task as complete')
+                appendAlert('Only the originator can mark the task as complete', "warning")
                 event.preventDefault();
                 document.getElementById('taskStatus').value = previousStatus;
                 document.getElementById("ratingCard").style.visibility = "hidden"
