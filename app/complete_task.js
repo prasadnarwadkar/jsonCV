@@ -64,7 +64,7 @@ function releaseTask() {
 }
 
 function handleAssignedUserIDChange(selectElement) {
-    console.log("Assigned User ID: " + selectElement.value);
+    
     $("#assigned_userid").val(selectElement.value);
 }
 
@@ -127,7 +127,7 @@ function expTaskToPDF() {
         fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
             .then(response => response.json())
             .then(data => {
-                console.log(data['message'])
+                
                 doc.text(20, 90, `Assigned to: ${data['message']}`)
 
                 doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN")}`)
@@ -221,7 +221,7 @@ $(document).ready(function () {
                     const encodedTaskId = encodeURIComponent(taskid);
                     const encodedAmount = encodeURIComponent(amount);
                     const baseUrl = window.taskData.paymentBaseUrl;
-                    console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`);
+                    
                     window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`;
                     return
                 }
@@ -311,9 +311,6 @@ $(document).ready(function () {
 
     $("#taskStatus").val(window.taskData.taskStatus);
 
-    console.log("Task id: " + taskid + " " + "User id: " + userId + " " + " Assigned to User id: " + window.taskData.assigned_userid)
-    console.log("Task status: ", $("#taskStatus").val())
-
     if (userId == parseInt(window.taskData.assigned_userid)
         && userId != parseInt(window.taskData.adminUserId)) {
         $("#releaseTaskBtn").removeAttr("disabled");
@@ -322,7 +319,7 @@ $(document).ready(function () {
         $("#releaseTaskBtn").attr("disabled", "disabled");
     }
 
-    console.log("taskstatus", $("#taskStatus").val())
+    
 
     if (taskStatus == "Complete") {
         document.getElementById("ratingCard").style.visibility = "hidden"

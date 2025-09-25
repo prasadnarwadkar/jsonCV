@@ -63,7 +63,7 @@ function releaseTask() {
 }
 
 function handleAssignedUserIDChange(selectElement) {
-    console.log("Assigned User ID: " + selectElement.value);
+    
     $("#assigned_userid").val(selectElement.value);
 
 
@@ -78,9 +78,9 @@ function handleAssignedUserIDChange(selectElement) {
         fetch(`/kbuploader/getUserRating/${selectElement.value}/`)
             .then(response => response.json())
             .then(data => {
-                console.log(parseFloat(data['message']))
+                
                 rating = parseFloat(data['message']).toFixed(2)
-                console.log(rating)
+                
 
                 $("#ratingSpanP2").html(`<span title="${rating}" class="stars"><span style="width: 148px;">${rating}</span></span>`).trigger('change')
 
@@ -90,7 +90,7 @@ function handleAssignedUserIDChange(selectElement) {
 }
 
 function handleTaskStatusChange(selectElement, event) {
-    console.log("Status: " + selectElement.options[selectElement.selectedIndex]?.text);
+    
 
     paymentReceived = window.taskData.paymentReceived
 
@@ -114,7 +114,7 @@ function handleTaskStatusChange(selectElement, event) {
                     const encodedTaskId = encodeURIComponent(taskid);
                     const encodedAmount = encodeURIComponent(amount);
                     const baseUrl = window.taskData.paymentBaseUrl;
-                    console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`);
+                    
                     window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`;
                     return
                 }
@@ -208,7 +208,7 @@ function taskPayButtonClick() {
                 const encodedTaskId = encodeURIComponent(taskid);
                 const encodedAmount = encodeURIComponent(amount);
                 const baseUrl = window.taskData.paymentBaseUrl;
-                console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`);
+                
                 window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`;
                 return
             }
@@ -224,20 +224,20 @@ $(document).ready(function () {
         if (window.taskData.userId == parseInt($("#assigned_userid").val())
             && window.taskData.userId != parseInt(window.taskData.adminUserId)) {
             $("#taskPayButton").attr("disabled", "disabled")
-            console.log("Task pay button disabled")
+            
         }
         else {
             if (window.taskData.taskStatus == "") {
                 $("#taskPayButton").attr("disabled", "disabled")
-                console.log("Task pay button disabled")
+                
             }
             else if (window.taskData.taskStatus == "In Progress") {
                 $("#taskPayButton").removeAttr("disabled")
-                console.log("Task pay button enabled")
+                
             }
             else {
                 $("#taskPayButton").attr("disabled", "disabled")
-                console.log("Task pay button disabled")
+                
             }
         }
     }
@@ -267,25 +267,12 @@ $(document).ready(function () {
 
     userId = parseInt(window.taskData.userId)
 
-
-
-
-    console.log("Task fees: ", $("#taskFees").val())
-
-
-
-
-
-
-
-
-
     fetch(`/kbuploader/getUserRating/${assignedUserID}/`)
         .then(response => response.json())
         .then(data => {
-            console.log(parseFloat(data['message']))
+            
             rating = parseFloat(data['message']).toFixed(2)
-            console.log(rating)
+            
 
             $("#ratingSpanP2").html(`<span title="${rating}" class="stars"><span style="width: 148px;">${rating}</span></span>`).trigger('change')
             $('span.stars').stars().trigger('change');
@@ -317,9 +304,9 @@ $(document).ready(function () {
 
     function setUpAssignedUserIDSelect() {
         let rawString = window.taskData.social_users.replace(/&#x27;/g, "'").replace(/&quot;/g, "\"").replace(/'/g, '"')
-        console.log("Raw string from users list: ", rawString)
+        
         let sanitized = sanitizeJsonString(rawString)
-        console.log("Sanitized JSON from users list: ", JSON.stringify(sanitized))
+        
         let parsed = sanitized;
 
 
@@ -373,12 +360,12 @@ $(document).ready(function () {
     if (taskStatusElement != null) {
         if (taskStatusElement.selectedIndex >= 0) {
             previousStatus = taskStatusElement.options[taskStatusElement.selectedIndex].value
-            console.log("previousStatus is ", previousStatus)
+            
         }
     }
 
 
-    console.log("Task id: " + taskid + " " + "User id: " + userId + " " + " Assigned to User id: " + window.taskData.assigned_userid)
+    
 
     if (userId == parseInt(window.taskData.assigned_userid)
         && userId != parseInt(window.taskData.adminUserId)) {
@@ -388,7 +375,7 @@ $(document).ready(function () {
         $("#releaseTaskBtn").attr("disabled", "disabled");
     }
 
-    console.log("taskstatus", $("#taskStatus").val())
+    
 });
 
 
@@ -441,15 +428,14 @@ function onSubmit() {
         return
     }
 
-    console.log("assigned user id:", parseInt($("#assigned_userid").val()))
+    
     if (parseInt($("#assigned_userid").val()) == 0
         || parseInt($("#assigned_userid").val()) == NaN) {
         appendAlert('Please assign the task to a user.', "danger")
         return
     }
 
-    console.log('task fees', $("#taskFees").val())
-    console.log('task type', $("#taskType").val())
+
 
     if ($("#taskType").val() == null
         || $("#taskType").val().length == 0) {

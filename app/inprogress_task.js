@@ -63,7 +63,7 @@ function releaseTask() {
 }
 
 function handleAssignedUserIDChange(selectElement) {
-    console.log("Assigned User ID: " + selectElement.value);
+    
     $("#assigned_userid").val(selectElement.value);
 
     if (selectElement.value != '') {
@@ -77,9 +77,9 @@ function handleAssignedUserIDChange(selectElement) {
         fetch(`/kbuploader/getUserRating/${selectElement.value}/`)
             .then(response => response.json())
             .then(data => {
-                console.log(parseFloat(data['message']))
+                
                 rating = parseFloat(data['message']).toFixed(2)
-                console.log(rating)
+                
 
                 $("#ratingSpanP2").html(`<span title="${rating}" class="stars"><span style="width: 148px;">${rating}</span></span>`).trigger('change')
 
@@ -89,7 +89,7 @@ function handleAssignedUserIDChange(selectElement) {
 }
 
 function handleTaskStatusChange(selectElement, event) {
-    console.log("Status: " + selectElement.options[selectElement.selectedIndex]?.text);
+    
 
     paymentReceived = window.taskData.paymentReceived
 
@@ -113,7 +113,7 @@ function handleTaskStatusChange(selectElement, event) {
                     const encodedtaskid = encodeURIComponent(window.taskData.taskid);
                     const encodedAmount = encodeURIComponent(amount);
                     const baseUrl = window.taskData.paymentBaseUrl;
-                    console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedtaskid}&amount=${encodedAmount}`);
+                    
                     window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedtaskid}&amount=${encodedAmount}`;
                     return
                 }
@@ -214,7 +214,7 @@ function taskPayButtonClick() {
                 const encodedtaskid = encodeURIComponent(window.taskData.taskid);
                 const encodedAmount = encodeURIComponent(amount);
                 const baseUrl = window.taskData.paymentBaseUrl;
-                console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedtaskid}&amount=${encodedAmount}`);
+                
                 window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedtaskid}&amount=${encodedAmount}`;
                 return
             }
@@ -230,11 +230,11 @@ $(document).ready(function () {
         if (window.taskData.userId == parseInt($("#assigned_userid").val())
             && window.taskData.userId != parseInt(window.taskData.adminUserId)) {
             $("#taskPayButton").attr("disabled", "disabled")
-            console.log("Task pay button disabled")
+            
         }
         else {
             $("#taskPayButton").removeAttr("disabled")
-            console.log("Task pay button enabled")
+            
         }
     }
 
@@ -314,7 +314,7 @@ $(document).ready(function () {
                     const encodedtaskid = encodeURIComponent(window.taskData.taskid);
                     const encodedAmount = encodeURIComponent(amount);
                     const baseUrl = window.taskData.paymentBaseUrl;
-                    console.log(`${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedtaskid}&amount=${encodedAmount}`);
+                    
                     window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedtaskid}&amount=${encodedAmount}`;
                     return
                 }
@@ -327,9 +327,9 @@ $(document).ready(function () {
     fetch(`/kbuploader/getUserRating/${assigned_userid_val}/`)
         .then(response => response.json())
         .then(data => {
-            console.log(parseFloat(data['message']))
+            
             rating = parseFloat(data['message']).toFixed(2)
-            console.log(rating)
+            
 
             $("#ratingSpanP2").html(`<span title="${rating}" class="stars"><span style="width: 148px;">${rating}</span></span>`).trigger('change')
 
@@ -370,7 +370,7 @@ $(document).ready(function () {
     }
 
     function setUpAssignedUserIDSelect() {
-        console.log('setUpAssignedUserIDSelect')
+        
         let raw = window.taskData.social_users;
 
         let htmlDecoded = raw.replace(/&#x27;/g, "'");
@@ -433,12 +433,12 @@ $(document).ready(function () {
     if (taskStatusElement != null
         && taskStatusElement.selectedIndex >= 0) {
         previousStatus = document.getElementById('taskStatus').options[taskStatusElement.selectedIndex].value
-        console.log("previousStatus is ", previousStatus)
+        
     }
 
 
 
-    console.log("Task id: " + window.taskData.taskid + " " + "User id: " + window.taskData.userId + " " + " Assigned to User id: " + window.taskData.assigned_userid)
+    
 
     if (window.taskData.userId == parseInt(window.taskData.assigned_userid)
         && window.taskData.userId != parseInt(window.taskData.adminUserId)) {
@@ -448,7 +448,7 @@ $(document).ready(function () {
         $("#releaseTaskBtn").attr("disabled", "disabled");
     }
 
-    console.log("taskstatus", $("#taskStatus").val())
+    
 
     if (taskStatus == "Complete") {
         document.getElementById("ratingCard").style.visibility = "hidden"
