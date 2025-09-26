@@ -64,7 +64,7 @@ function releaseTask() {
 }
 
 function handleAssignedUserIDChange(selectElement) {
-    
+
     $("#assigned_userid").val(selectElement.value);
 }
 
@@ -127,7 +127,7 @@ function expTaskToPDF() {
         fetch(`/kbuploader/getUserFullName/${assignedUserID}/`)
             .then(response => response.json())
             .then(data => {
-                
+
                 doc.text(20, 90, `Assigned to: ${data['message']}`)
 
                 doc.text(20, 100, `Start Date: ${new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN")}`)
@@ -174,24 +174,23 @@ $(document).ready(function () {
     const htmlDecodedScheduleOfCharges = scheduleOfCharges.replace(/&#x27;/g, "'");
 
     const jsonReadyScheduleOfCharges = htmlDecodedScheduleOfCharges.replace(/'/g, '"');
-
-    const parsedScheduleOfCharges = JSON.parse(jsonReadyScheduleOfCharges);
-
-    paymentReceived = window.taskData.paymentReceived
-    if (window.taskData.taskStatus == "Complete"
-        || paymentReceived == "True"
-    ) {
-
-    }
-
+    let parsedScheduleOfCharges = undefined
     const taskType = window.taskData.taskType
 
-    parsedScheduleOfCharges.forEach(item => {
-        if (parseInt(taskType) == item.id) {
-            $("#taskTypeLabel").val(item.text)
-            $("#taskTypeLabel").attr("title", item.text)
-        }
-    });
+    if (jsonReadyScheduleOfCharges != undefined
+        && jsonReadyScheduleOfCharges != null
+        && jsonReadyScheduleOfCharges.length > 0) {
+        parsedScheduleOfCharges = JSON.parse(jsonReadyScheduleOfCharges);
+
+        parsedScheduleOfCharges.forEach(item => {
+            if (parseInt(taskType) == item.id) {
+                $("#taskTypeLabel").val(item.text)
+                $("#taskTypeLabel").attr("title", item.text)
+            }
+        });
+    }
+
+    paymentReceived = window.taskData.paymentReceived
 
     const taskStatus = window.taskData.taskStatus
 
@@ -221,7 +220,7 @@ $(document).ready(function () {
                     const encodedTaskId = encodeURIComponent(taskid);
                     const encodedAmount = encodeURIComponent(amount);
                     const baseUrl = window.taskData.paymentBaseUrl;
-                    
+
                     window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`;
                     return
                 }
@@ -319,7 +318,7 @@ $(document).ready(function () {
         $("#releaseTaskBtn").attr("disabled", "disabled");
     }
 
-    
+
 
     if (taskStatus == "Complete") {
         document.getElementById("ratingCard").style.visibility = "hidden"
