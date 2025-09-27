@@ -387,19 +387,19 @@ function onSubmit() {
 
 
     if ($("#taskDesc").val().length == 0) {
-        appendAlert("Please enter Task Description.", "danger")
+        appendAlert("Please enter task description.", "danger")
 
         return
     }
 
     if ($("#taskDesc").val().length > 200) {
-        appendAlert("Task Description may not be more than 200 characters.", "danger")
+        appendAlert("Task description may not be more than 200 characters.", "danger")
 
         return
     }
 
     if ($("#taskStatus").val() == null) {
-        appendAlert("Please select Task Status.", "danger")
+        appendAlert("Please select task status.", "danger")
 
         return
     }
@@ -408,7 +408,7 @@ function onSubmit() {
         || $("#startDate").val() == 'Invalid Date'
         || $("#startDate").val() == 'None'
         || $("#startDate").val().length == 0) {
-        appendAlert("Please select valid Start date.", "danger")
+        appendAlert("Please select valid start date.", "danger")
         return
     }
 
@@ -416,14 +416,14 @@ function onSubmit() {
         $("#endDate").val() == 'Invalid Date'
         || $("#endDate").val() == 'None'
         || $("#endDate").val().length == 0) {
-        appendAlert("Please select valid End date.", "danger")
+        appendAlert("Please select valid end date.", "danger")
 
         return
     }
 
 
     if (new Date($("#endDate").val()) < new Date($("#startDate").val())) {
-        appendAlert("Please select End date that is the same as or after the start date.", "danger")
+        appendAlert("Please select end date that is the same as or after the start date.", "danger")
 
         return
     }

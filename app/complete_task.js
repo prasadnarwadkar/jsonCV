@@ -63,10 +63,7 @@ function releaseTask() {
     }
 }
 
-function handleAssignedUserIDChange(selectElement) {
 
-    $("#assigned_userid").val(selectElement.value);
-}
 
 
 
@@ -84,13 +81,7 @@ function getPriceFromTaskTypeInt(id) {
     return price
 }
 
-function handleTaskTypeChange(selectElement) {
-    $("#taskType").val(selectElement.value);
 
-    let price = getPriceFromTaskTypeInt(selectElement.options[selectElement.selectedIndex]?.value)
-
-    $("#taskFees").val(price)
-}
 
 function ratingNumChanged(element) {
     gfg(element.value)
@@ -194,41 +185,12 @@ $(document).ready(function () {
 
     const taskStatus = window.taskData.taskStatus
 
-    if (taskStatus == "Complete") {
-        document.getElementById("ratingCard").style.visibility = "hidden"
-    }
+    
 
     userId = window.taskData.userId
     paymentReceived = window.taskData.paymentReceived
 
-    if (paymentReceived != "True") {
-        if (userId != parseInt(window.taskData.assigned_userid)
-            || userId == parseInt(window.taskData.adminUserId)) {
-
-
-
-            if (taskStatus == "In Progress") {
-                var result = confirm("This task is marked as in progress. Please note that initiating a task requires advance payment. If you're not satisfied with the quality of work delivered by the assigned professional, you may request a rework or a refund. Once they confirm your request, the system may proceed with issuing a refund. Are you sure you would like to proceed with the payment?")
-
-                if (result) {
-                    email = $("#email").val()
-                    phone = $("#phone").val()
-                    amount = $("#amount").val()
-                    const encodedEmail = encodeURIComponent(email);
-                    const encodedPhone = encodeURIComponent(phone);
-                    taskid = window.taskData.taskid
-                    const encodedTaskId = encodeURIComponent(taskid);
-                    const encodedAmount = encodeURIComponent(amount);
-                    const baseUrl = window.taskData.paymentBaseUrl;
-
-                    window.location.href = `${baseUrl}?email=${encodedEmail}&phone=${encodedPhone}&taskid=${encodedTaskId}&amount=${encodedAmount}`;
-                    return
-                }
-            }
-
-
-        }
-    }
+    
 
 
 
@@ -320,9 +282,7 @@ $(document).ready(function () {
 
 
 
-    if (taskStatus == "Complete") {
-        document.getElementById("ratingCard").style.visibility = "hidden"
-    }
+ 
 
 
     $("#startDate").val(new Date(Date.parse(window.taskData.startDate)).toLocaleDateString("en-IN"));
